@@ -1,0 +1,6 @@
+blue
+azul
+orange
+naranja
+red
+rojo
