@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-form">
+  <div class="col-xs-6">
+    {% from "_macros.html" import render_input %}
+    <h2>Números de cajas</h2>
+    <form action="/cajasDinamicas" method="POST">
+
+      {% for campoN in range(campoN) %}
+      <label for="txtNumber">Caja:{{campoN+1}}</label>
+      <input type="number" name="txtNumber" id="txtNumber">
+      {%endfor%}
+      <br>
+      <input type="submit" class="btn btn-success" value="Calcular">
+    </form>
+    
+  </div>
+</div>
+
+{% endblock %}

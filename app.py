@@ -89,6 +89,41 @@ def search_dictionary(opc, bus):
             i += 1
     return palabra
 
+@app.route('/')
+def formulario():
+    return render_template('CajasDinamicas.html')
+           
+@app.route("/Caja", methods = ['GET', 'POST'])
+def caja():
+    if request.method == 'POST':
+        campoN = int(request.form.get('txtCampoN'))
+        return render_template('AnalisisDeCajas.html', campoN = campoN)
+
+@app.route("/cajasDinamicas",methods=["POST"])
+def cajas():
+    numeroString = request.form.getlist('txtNumber')
+    numeroInt = list(map(int, numeroString))
+    maximo = int(numeroInt[0])
+    for a in numeroInt:
+        if int(maximo) > int(a):
+            maximo = maximo
+        else:
+            maximo=a
+    menor = int(numeroInt[0])
+    for m in numeroInt:
+        if int(menor) < int(m):
+            menor = menor
+        else:
+            menor=m
+    calculo = sum(numeroInt) / len(numeroInt)
+    results = []
+    results2 = []
+    for number in numeroInt:
+        resultado = numeroInt.count(number)
+        num = resultado;
+        results.append("{}".format(number))
+        results2.append("aparece {} veces".format(resultado))
+    return render_template('resultado.html', maximo = maximo, menor = menor, calculo = calculo, results = results, results2 = results2)
 
 if __name__ == "__main__":
     app.run(debug=True,port=3000)

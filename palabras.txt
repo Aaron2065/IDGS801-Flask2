@@ -4,3 +4,5 @@ orange
 naranja
 red
 rojo
+blue
+azul
